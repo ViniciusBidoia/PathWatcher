@@ -15,6 +15,7 @@ namespace PathWatcher.ConsoleApp.Entities
         public string Method { get; private set; }
         public string AssemblyName { get; private set; }
 
+        //Eventos disponiveis no FileSystemWatcher
         private event EventHandler OnCreated;
         private event EventHandler OnDeleted;
         private event EventHandler OnRenamed;
@@ -71,6 +72,8 @@ namespace PathWatcher.ConsoleApp.Entities
                
         private void ExecuteMethod()
         {
+            //Regra do que deve fazer após ser disparado o handler
+
             Assembly assembly = Assembly.LoadFrom($"{AssemblyName}.dll");
             var type = assembly.GetTypes().SingleOrDefault(x => x.Name == Classe);
             ConstructorInfo Constructor = type.GetConstructor(Type.EmptyTypes);
